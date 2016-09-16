@@ -1,0 +1,83 @@
+extends ./templates/layout.pug
+
+
+block append config
+	-var appUsers = 2.5
+	-var image = "http://unsplash.it/300/180?image="
+
+block prepend main
+	h2| No I'm from other :D
+	p| This is #{appName} and the our users #{appUsers}K
+
+
+	mixin product(title, imageID, price)
+		.product
+			.product__wrapper    
+				img.product__img(
+					src=image+imageID
+				)
+			.product__content
+				h2.product__title #{title}
+				p.product__price AU$ #{price}
+	        
+	.products
+		+product('iPhone 6+',464, '599.90')
+		+product('GoPro Hero 4',881, '479.90')
+		+product('Toothbrush',777, '9.40')
+		+product('AAA Batteries',666, '17.90')
+		+product('Printer Ink',555, '69.90')
+		+product('MP3 Player',444, '129.50')
+
+	style.
+		@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900");
+		body {
+		  font-family: Lato, sans-serif;
+		  background: #def6f7;
+		}
+		.products {
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -webkit-flex-wrap: wrap;
+		      -ms-flex-wrap: wrap;
+		          flex-wrap: wrap;
+		  -webkit-box-pack: center;
+		  -webkit-justify-content: center;
+		      -ms-flex-pack: center;
+		          justify-content: center;
+		  padding: 3rem 0;
+		}
+		.product {
+		  -webkit-box-flex: 0;
+		  -webkit-flex: 0 0 180px;
+		      -ms-flex: 0 0 180px;
+		          flex: 0 0 180px;
+		  margin: 0.75rem;
+		  background: #fff;
+		  border-radius: 6px;
+		  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+		  -webkit-transition: 0.1s;
+		  transition: 0.1s;
+		}
+		.product:hover {
+		  -webkit-transform: translateY(-4px);
+		          transform: translateY(-4px);
+		  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+		}
+		.product__wrapper {
+		  overflow: hidden;
+		  border-radius: 6px;
+		}
+		.product__content {
+		  padding: 1rem 2rem;
+		}
+		.product__title {
+		  margin: 0.5rem 0 0;
+		  font-weight: 900;
+		}
+		.product__price {
+		  font-size: 1.1rem;
+		  line-height: 1.5;
+		  margin-bottom: 0.5rem;
+		}
